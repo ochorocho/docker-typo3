@@ -20,7 +20,7 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 ENV PATH "/tmp/vendor/bin:$PATH"
 
 # start apache
-RUN mkdir -p /run/apache2 && mkdir -p /var/www/html
+RUN mkdir -p /run/apache2 && mkdir -p /var/www/html && chown -R apache:apache /var/www
 ENTRYPOINT /usr/sbin/httpd -D FOREGROUND
 
 WORKDIR /var/www
